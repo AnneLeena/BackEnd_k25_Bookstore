@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import backend.bookstore.domain.BookstoreRepository;
 import org.springframework.web.bind.annotation.RequestMethod;
 import backend.bookstore.domain.Book;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -43,8 +45,22 @@ public class BookController {
         repository.deleteById(bookId);
         return "redirect:/booklist";
     }
+
+    @RequestMapping(value = "/edit/{id}", method=RequestMethod.GET)
+    public String editBook(@PathVariable("id") Long bookId, Model model) {
+        Book book = repository.findById(bookId).orElse(null);
+        model.addAttribute("book", book);
+        return "editbook";
+    }
+
+    @RequestMapping(value= "/update", method=RequestMethod.POST)
+    public String update (Book book) {
+        repository.save(book);
+        return "redirect:/booklist";
+        
+    }
     
-    
+      
     
     
 }

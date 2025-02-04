@@ -7,9 +7,14 @@
 </head>
 
 <body>
-    <form action="#" th:action="@{/save}" th:object="${book}" th:method="post">
+    <form action="#" th:action="@{/update}" th:object="${book}" th:method="post">
+        
+        <!-- Tähän etsin virheapua netistä -->
+        <input type="hidden" th:field="*{id}" />
+        
+        
         <div>
-            <h1>Add book</h1>
+            <h1>Edit book</h1>
         </div>
         <div>
             <label for="title">Title: </label>
@@ -32,7 +37,7 @@
             <input type="number"  step="0.01" placeholder="price" th:field="*{price}" />
         </div>
         <div>
-            <button type="submit"> Add Book</button>
+            <button type="submit">Save changes</button>
         </div>
     </form>
 
