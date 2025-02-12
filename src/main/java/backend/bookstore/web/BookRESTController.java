@@ -1,6 +1,7 @@
 package backend.bookstore.web;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -73,11 +74,18 @@ public class BookRESTController {
         return bookstoreRepository.findById(id);
     }
 
+    @GetMapping("/books/author/{author}")
+    List<Book> getBookByAuthor(@PathVariable String author) {
+        log.info("find books = " + author);
+        return bookstoreRepository.findByAuthor(author);
+        }
+
+
     // find one car with the specific owner
-    //@GetMapping("/books/category/{lastname}")
-    //List<Car> getCarByOwner(@PathVariable String lastname) {
-       // log.info("find car, lastname = " + lastname);
-       // return carRepository.findByOwnerLastName(lastname);
-    //}
+    @GetMapping("/books/category/{name}")
+    List<Book> getBookByCategory(@PathVariable String name) {
+    log.info("find books, category = " + name);
+    return bookstoreRepository.findByCategoryName(name);
+    }
 
 }
