@@ -85,7 +85,7 @@ public class BookRESTController {
     @GetMapping("/books/category/{name}")
     List<Book> getBookByCategory(@PathVariable String name) {
     log.info("find books, category = " + name);
-    return bookstoreRepository.findByCategoryName(name);
+    return bookstoreRepository.findByCategory_Name(name);
     }
 
 }
